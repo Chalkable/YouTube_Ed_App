@@ -1,0 +1,37 @@
+﻿@model Youtube.Models.SearchModel
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {    
+    <div>
+        @Html.TextBox("query", Model.Query)<input type="submit" value="Search" />
+        <table>
+        @foreach (var v in Model.Videos)
+        {
+            <tr>
+                <td>
+                    @{
+                        string imgSrc = "http://i4.ytimg.com/vi/" + @v.Id + "/mqdefault.jpg";
+                    }
+                    <img src="@imgSrc" />
+                </td>
+                <td>
+                    <h2>
+                        @Html.ActionLink(@v.Title, "Preview", new RouteValueDictionary { { "id", v.Id }, {"announcementApplicationId", Model.AnnouncementApplicationId} });                    
+                    </h2>
+                    Views: @v.Views <br />
+                    Duration: @v.Duration <br />
+                    uploaded by: @v.UploadedBy <br />
+                    @v.Description 
+                </td>
+            </tr>
+                
+        }
+        </table>
+        
+    </div>
+}

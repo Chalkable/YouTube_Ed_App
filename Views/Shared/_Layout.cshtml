@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Cache-Control" content="no-cache" />
+        <meta http-equiv="Expires" content="Fri, 30 Apr 2010 11:12:01 GMT" />
+        <meta http-equiv="Expires" content="0" />
+        
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+        @Scripts.Render("~/Scripts/jquery-1.7.1.min.js ")
+        @Scripts.Render("~/Scripts/chlk-post-message-api.js")
+
+
+        @RenderSection("headerscripts", required: false)
+        <script type="text/javascript">
+            var parentURL;
+
+            jQuery(document).ready(function () {
+                parentURL = jQuery('#baseremoteurl').val();
+            });
+            CHLK_MESSENGER.addYourself(function () {
+                CHLK_MESSENGER.addMe({}, parentURL);
+            });
+        </script>
+    </head>
+    <body>        
+        <HTTP-EQUIV="PRAGMA" CONTENT="NO-STORE" />
+        <div id="body">
+            <section class="content-wrapper main-content clear-fix">
+                @RenderBody()
+            </section>
+        </div>
+        @Scripts.Render("~/bundles/jquery")
+        @RenderSection("scripts", required: false)
+    </body>
+</html>
